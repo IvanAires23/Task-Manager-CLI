@@ -34,3 +34,19 @@ def list_tasks():
         print(tabulate(tasks, headers=headers, tablefmt="fancy_grid"))
     else:
         print("Nenhuma tarefa encontrada.")
+
+
+def complete_task(task_id):
+    conn = connect()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        UPDATE tasks
+        SET status = 'concluída'
+        WHERE id = ?
+    """, (task_id,))
+
+    conn.commit()
+    conn.close()
+
+    print(f"Tarefa {task_id} marcada como concluída.")
