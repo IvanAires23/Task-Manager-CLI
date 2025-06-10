@@ -1,4 +1,12 @@
 from db import create_tables
+from tasks import add_task
 
 create_tables()
-print("Task Manager CLI - Banco de dados criado")
+
+add_task(
+    title="Estudar Python",
+    description="Terminar projeto do gerenciador de tarefas",
+    due_date="2025-06-10",
+    priority="alta",
+    tags="estudo,programação"
+)
